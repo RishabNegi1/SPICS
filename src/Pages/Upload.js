@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Main from '../Components/Main';
+import { useNavigate } from 'react-router-dom';
 
 const Upload = ({ onPhotoAdd }) => {
   const [photos, setPhotos] = useState([]);
-
+  const navigate = useNavigate(); 
+  
   const onDrop = useCallback((acceptedFiles) => {
     const updatedPhotos = acceptedFiles.map((file) =>
       Object.assign(file, {
@@ -13,13 +15,15 @@ const Upload = ({ onPhotoAdd }) => {
     );
     setPhotos([...photos, ...updatedPhotos]);
     onPhotoAdd([...photos, ...updatedPhotos]);
-  }, [photos, onPhotoAdd]);
+
+    navigate('/');
+  }, [photos, onPhotoAdd, navigate]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
     <div>
-      <div {...getRootProps()} style={styles.dropzone}>
+      <div {...getRootProps()} className=' border-[2px] border-dashed #888 border-r-4 p-10 text-center cursor-pointer'>    
         <input {...getInputProps()} />
         {isDragActive ? (
           <p>Drop the photo here ...</p>
@@ -32,15 +36,7 @@ const Upload = ({ onPhotoAdd }) => {
   );
 };
 
-const styles = {
-  dropzone: {
-    border: '2px dashed #888',
-    borderRadius: '4px',
-    padding: '20px',
-    textAlign: 'center',
-    cursor: 'pointer',
-  },
-};
+
 
 export default Upload
 

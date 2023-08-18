@@ -1,10 +1,4 @@
 import React from 'react';
-import A from '../Components/img/1.jpg';
-import B from '../Components/img/2.jpg';
-import C from '../Components/img/3.jpg';
-import D from '../Components/img/4.jpg';
-import E from '../Components/img/5.jpg';
-import F from '../Components/img/6.jpg';
 
 const Main = ({ photos }) => {
   return (
@@ -26,10 +20,10 @@ const Main = ({ photos }) => {
         <div className=' mt-10 max-w-[1360px] mx-auto lg:grid grid-cols-3 grid-rows-2 lg:w-[70%] md:w-[60%] sm:w-[70%] items-center'>
         {photos?.map((photo, index) => (
         <img
-          className=' w-[100%] h-[100%] object-cover'
+          className=' w-[100%] h-[100%] object-cover p-2'
           key={index}
           src={photo.preview}
-          alt={`Photo ${index}`}
+          alt=''
         />
       ))}
     </div>

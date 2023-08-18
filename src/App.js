@@ -16,7 +16,7 @@ function App() {
        <BrowserRouter>
       <Navbar/>
       <Routes>
-      <Route path='/' element={<Main/>}/>
+      <Route path='/' element={<Main photos= {uploadedPhotos}/>}/>
       <Route path='/up' element={<Upload onPhotoAdd={handlePhotoAdd}/>} />
       </Routes>
         
