@@ -5,6 +5,7 @@ import Main from './Components/Main';
 import Navbar from './Components/Navbar';
 import Upload from './Pages/Upload';
 import Login from './Pages/Login';
+import Join from './Pages/Join';
 
 function App() {
   const [uploadedPhotos, setUploadedPhotos] = useState([]);
@@ -16,9 +17,10 @@ function App() {
     <div className="App">
        <BrowserRouter>
       <Navbar/>
-      <Login path='login'/>
       <Routes>
       <Route path='/' element={<Main photos= {uploadedPhotos}/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/join' element={<Join/>}/>
       <Route path='/up' element={<Upload onPhotoAdd={handlePhotoAdd}/>} />
       </Routes>
         
