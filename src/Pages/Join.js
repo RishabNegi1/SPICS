@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Join = () => {
   return (
@@ -34,7 +36,9 @@ const Join = () => {
              <p 
               className=' text-base text-gray-600'>
               Already a Member? 
+              <Link to="/login">
               <button className=' text-xl text-black mx-1'>SignIn.</button>
+              </Link>
               </p>
              
            </form>

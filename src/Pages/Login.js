@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -35,7 +36,9 @@ const Login = () => {
              <p 
               className=' text-base text-gray-600'>
               New to SPICS?
+              <Link to="/join">
               <button className=' text-xl text-black mx-1'>Sign up now.</button>
+              </Link>
               </p>
              
            </form>
