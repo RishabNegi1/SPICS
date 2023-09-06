@@ -1,8 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserAuth } from '../Context/AuthContext';
 
 const Join = () => {
+  const [email , setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const {user, signUp} = UserAuth()
+  const navigate = useNavigate()
+
+  const handleSubmit =  async(e)=>{
+    e.preventDefault()
+    try{
+      await signUp(email, password)
+      navigate('/')
+    }catch(error){
+      console.log(error)
+    }
+  }
   return (
     <div className=' w-full h-screen'>
     <img
@@ -13,13 +27,15 @@ const Join = () => {
         <div className=' max-w-[400px] h-[550px] mx-auto bg-slate-50 text-black'>
          <div className=' max-w-[320px] mx-auto py-16'>
            <h1 className=' text-3xl font-bold'>Join SPICS Family</h1>
-           <form className=' w-full my-6 flex flex-col py-4'>
+           <form onSubmit={handleSubmit} className=' w-full my-6 flex flex-col py-4'>
             <input
+            onChange={(e)=> setEmail(e.target.value)}
              className=' p-3 my-2 bg-gray-800 text-white rounded-3xl'
              type="email"
              placeholder='Email' 
              autoComplete='email'/>
             <input
+            onChange={(e)=> setPassword(e.target.value)}
              className=' p-3 my-2 bg-gray-800 text-white rounded-3xl'
              type="password"
              placeholder='Password' 

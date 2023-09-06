@@ -1,11 +1,22 @@
 import React, { useState } from 'react'
 import {PiGooglePhotosLogoFill} from "react-icons/pi";
 import {CgCloseO} from "react-icons/cg";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { UserAuth } from '../Context/AuthContext';
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-
+  const {user, logOut} = UserAuth()
+  const navigate = useNavigate() 
+  const handleLogout = async () =>{
+    try{
+      await logOut()
+      navigate('/')
+    }catch(error)
+    {
+      console.log(error)
+    }
+  }
   return (
     <div className=' bg-[#f5e6aa]'>
     <div className=' p-4 items-center h-24 max-w-[1240px] mx-auto sticky top-0'>
@@ -20,21 +31,39 @@ const Navbar = () => {
         }
       
       <ul className='hidden md:flex text-xl font-bold text-[#6b8b92] gap-7 m-3'>
-        <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>GALLERY</li>
         <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>EXPLORE</li>
         <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>SOCIALS</li>
+        {user?.email ? 
+        <>
         <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>
         <NavLink to={'/up'}>UPLOAD</NavLink></li>
+        <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>Account</li>
+        <li onClick={handleLogout} className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>LogOut</li>
+        
+        </>
+        :
+        <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>
+          <NavLink to={'/join'}>SignUp</NavLink></li>
+        }
       </ul>
 
-      <ul className={` duration-300 p-10 md:hidden text-xl fixed w-full h-screen top-[98px] font-bold text-orange-200 bg-neutral-800
+      <ul className={`duration-300 p-10 md:hidden text-xl fixed w-full h-screen top-[98px] font-bold text-orange-200 bg-neutral-800
        ${toggle ? 'left-[0]' : 'left-[-100%]'}
       `}>
-        <li className='p-5'>GALLERY</li>
         <li className='p-5'>EXPLORE</li>
         <li className='p-5'>SOCIALS</li>
-        <li className='p-5'><NavLink to={'/up'}>UPLOAD</NavLink></li>
-      </ul>
+        {user?.email ? 
+        <>
+        <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>
+        <NavLink to={'/up'}>UPLOAD</NavLink></li>
+        <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>Account</li>
+        <li onClick={handleLogout} className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>LogOut</li>
+        </>
+        :
+        <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>
+          <NavLink to={'/join'}>SignUp</NavLink></li>
+        }
+        </ul>
         </div>
         </div>
     </div>
