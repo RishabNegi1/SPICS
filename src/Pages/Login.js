@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../Context/AuthContext';
 
@@ -8,6 +8,7 @@ const Login = () => {
   const [error, setError] = useState('')
   const {user, logIn} = UserAuth()
   const navigate = useNavigate()
+  const [randomImg, setRandomImg] = useState()
 
   const handleSubmit =  async(e)=>{
     e.preventDefault()
@@ -20,15 +21,27 @@ const Login = () => {
       setError(error.message)
     }
   }
+
+  useEffect(()=>{
+    const fetchRandomImg = async () => {
+      const response = await fetch(`https://api.unsplash.com/photos/random?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}`);
+      const data = await response.json();
+      if (data.urls && data.urls.full) {
+        setRandomImg(data.urls.full);
+      }
+    };
+    fetchRandomImg();
+  }, [])
+
   return (
     <div className=' w-full h-screen'>
     <img
       className=' hidden sm:block absolute w-full h-screen object-cover'
-       src="https://images.pexels.com/photos/383568/pexels-photo-383568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+       src={randomImg}
        alt='/' />
-       <div className=' fixed w-full px-4 py-28 z-50'>
+       <div className=' fixed w-full px-4 py-28'>
         <div className=' max-w-[400px] h-[550px] mx-auto bg-slate-50 text-black'>
-         <div className=' max-w-[320px] mx-auto py-16'>
+         <div className=' max-w-[250px] xl:max-w-[350px] l:max-w-[350px] mx-auto py-16'>
            <h1 className=' text-3xl font-bold'>Welcome Back</h1>
            {error ? 
            <p className=' p-2 bg-red-400 my-2'>
@@ -38,17 +51,17 @@ const Login = () => {
            className=' w-full my-6 flex flex-col py-4'>
             <input
             onChange={(e)=> setEmail(e.target.value)}
-             className=' p-3 my-2 bg-gray-800 text-white rounded-3xl'
+             className=' p-2 my-2 l:p-3 l:my-2 xl:p-3 xl:my-2 bg-gray-200 text-white rounded-3xl'
              type="email"
              placeholder='Email' 
              autoComplete='email'/>
             <input
             onChange={(e)=> setPassword(e.target.value)}
-             className=' p-3 my-2 bg-gray-800 text-white rounded-3xl'
+             className=' p-2 my-2 l:p-3 l:my-2 xl:p-3 xl:my-2 bg-gray-200 text-white rounded-3xl'
              type="password"
              placeholder='Password'/>
              <button
-              className=' my-6 py-3 bg-red-500 rounded-3xl cursor-pointer'>Sign In</button>
+              className=' p-2 my-2 l:p-3 l:my-2 xl:p-3 xl:my-2 bg-red-500 rounded-3xl cursor-pointer'>Sign In</button>
              <div className=' my-4 flex justify-between items-center text-base text-gray-600'>
              <p>
               <input 
