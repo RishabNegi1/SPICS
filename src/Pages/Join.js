@@ -50,7 +50,7 @@ const Join = () => {
 
             <input
             onChange={(e)=> setPassword(e.target.value)}
-             className=' p-2 my-2 l:p-3 l:my-2 xl:p-3 xl:my-2 bg-gray-200 text-white rounded-3xl'
+             className=' p-2 my-2 l:p-3 l:my-2 xl:p-3 xl:my-2 bg-gray-200 text-black rounded-3xl'
              type="password"
              placeholder='Password' 
              autoComplete='email'/>

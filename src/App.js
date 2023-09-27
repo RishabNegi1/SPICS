@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState} from 'react';
+import React from 'react';
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './Components/Main';
 import Navbar from './Components/Navbar';
@@ -11,8 +11,6 @@ import { AuthContextProvider } from './Context/AuthContext';
 import ProtectedRoutes from './Components/ProtectedRoutes';
 
 function App() {
-
-  
   return (
     <div className="App">
       <BrowserRouter>

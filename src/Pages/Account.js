@@ -43,17 +43,17 @@ const Account = () => {
         <p>Loading...</p>
       ) : (
         <div className="container mx-auto px-5 2xl:px-0 mt-10">
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 pb-20 lg:container">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 pb-20 ">
             {photoURLs.map((photoURL, index) => (
               <div key={index} className="relative">
-                <img src={photoURL} alt={`Uploaded ${index + 1}`} className="w-full h-auto rounded-lg" />
+                <img src={photoURL} alt={`Uploaded ${index + 1}`} className="w-full h-90 rounded-3xl p-5 bg-red-100" />
               </div>
             ))}
           </div>
         </div>
       )}
     </div>
-  );
+  )
 };
 
 export default Account;

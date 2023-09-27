@@ -1,14 +1,16 @@
-import React, { lazy } from 'react'
+import React from 'react'
+import LazyLoad from 'react-lazyload'
 
 const Image = (props) => {
   return (
-    <div className=' shadow-md bg-white rounded-3xl p-5'>
+    <div className=' shadow-md bg-red-100 rounded-3xl p-5'>
+      <LazyLoad>
         <img 
         src= {props.urls.full} 
         alt={props.user.name}
-        loading= "lazy"
         className=' h-60 w-full object-cover rounded-3xl'
         />
+      </LazyLoad>
     </div>
   )
 }

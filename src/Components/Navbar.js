@@ -43,15 +43,15 @@ const Navbar = () => {
 
           <ul className='hidden md:flex text-xl font-bold text-[#6b8b92] gap-7 m-3'>
             <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>
-              EXPLORE
+            <NavLink to={'/'}>Explore</NavLink>
             </li>
             <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>
-              SOCIALS
+              Socials
             </li>
             {user?.email ? (
               <>
                 <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>
-                  <NavLink to={'/up'}>UPLOAD</NavLink>
+                  <NavLink to={'/up'}>Upload</NavLink>
                 </li>
                 <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>
                   <NavLink to={'/account'}>Account</NavLink>
@@ -75,12 +75,12 @@ const Navbar = () => {
        ${toggle ? 'left-[0]' : 'left-[-100%]'}
       `}
           >
-            <li className='p-5'>EXPLORE</li>
-            <li className='p-5'>SOCIALS</li>
+            <li className='p-5'><NavLink to={'/'}>Explore</NavLink></li>
+            <li className='p-5'>Socials</li>
             {user?.email ? (
               <>
                 <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>
-                  <NavLink to={'/up'}>UPLOAD</NavLink>
+                  <NavLink to={'/up'}>Upload</NavLink>
                 </li>
                 <li className='p-2 cursor-pointer hover:bg-[#c9afb2] rounded-full'>
                   Account

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from './Image';
+import Footer from './Footer';
 
 const Main = () => {
   const [img, setImg] = useState([])
@@ -57,7 +58,9 @@ const Main = () => {
             ))}
           </div>
         )}
+        
       </div>
+      <Footer/>
 </div>
   )
 }
