@@ -4,7 +4,7 @@ import LazyLoad from 'react-lazyload'
 const Image = (props) => {
   return (
     <div className=' shadow-md bg-red-100 rounded-3xl p-5'>
-      <LazyLoad>
+      <LazyLoad once>
         <img 
         src= {props.urls.full} 
         alt={props.user.name}
